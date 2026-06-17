@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="basic_arm">
+    
+    <xacro:include filename="$(find william)/urdf/basic_arm.urdf" />
+
+    <xacro:include filename="basic_arm.ros2_control.xacro" />
+
+    <xacro:basic_arm_ros2_control name="GazeboSimSystem" />
+
+    <gazebo>
+        <plugin filename="libgz_ros2_control-system.so" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+            <parameters>$(find basic_arm_moveit_config)/config/ros2_controllers.yaml</parameters>
+            <controller_manager_name>controller_manager</controller_manager_name>
+        </plugin>
+    </gazebo>
+
+</robot>
