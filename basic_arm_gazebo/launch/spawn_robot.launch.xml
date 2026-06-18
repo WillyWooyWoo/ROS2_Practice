@@ -11,7 +11,13 @@
         <param name="use_sim_time" value="true"/>
     </node>
 
-    <node pkg="rviz2" exec="rviz2" name="rviz2" args="-d $(find-pkg-share william)/config/config.rviz">
+    <node pkg="controller_manager" exec="spawner" name="spawner_arm_controller" args="arm_controller -c /controller_manager">
         <param name="use_sim_time" value="true"/>
     </node>
+
+    <node pkg="controller_manager" exec="spawner" name="spawner_gripper_controller" args="gripper_controller -c /controller_manager">
+        <param name="use_sim_time" value="true"/>
+    </node>
+
+    <include file="$(find-pkg-share basic_arm_moveit_config)/launch/sim_move_group.launch.py" />
 </launch>
